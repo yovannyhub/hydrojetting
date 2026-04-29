@@ -584,7 +584,7 @@
                 function playVideo() {
                     document.getElementById('video-thumbnail').style.display = 'none';
                     var iframe = document.getElementById('youtube-iframe');
-                    iframe.src = 'https://www.youtube.com/embed/lfL-Lr6Bq88?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+                    iframe.src = 'https://www.youtube.com/embed/lfL-Lr6Bq88?autoplay=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=' + encodeURIComponent(window.location.origin);
                     iframe.classList.remove('hidden');
                 }
             </script>
