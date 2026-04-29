@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Area We Service | Aurora Sewer Cleaning Corp</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --asc-yellow-light: #fff9c6;
+      --asc-yellow: #ffe55e;
+      --asc-yellow-dark: #e9be00;
+      --asc-orange: #f59e0b;
+      --asc-black: #0b0b0b;
+      --asc-blue: #0a5b8c;
+    }
+    body {
+      background:
+        radial-gradient(900px 600px at 0% 0%, rgba(255, 229, 94, 0.30), transparent 58%),
+        radial-gradient(700px 400px at 100% 4%, rgba(10, 91, 140, 0.35), transparent 58%),
+        linear-gradient(160deg, #f8fbff 0%, #eff7ff 38%, #fffde9 100%);
+      min-height: 100vh;
+    }
+    .map-shell {
+      border-radius: 1.6rem;
+      border: 1px solid rgba(2, 6, 23, 0.10);
+      background: linear-gradient(160deg, #f7fbff 0%, #eaf4ff 45%, #fff4ba 100%);
+      box-shadow: 0 24px 70px rgba(2, 6, 23, 0.16);
+      overflow: hidden;
+    }
+    .map-frame {
+      width: 100%;
+      height: 620px;
+      border: 0;
+      border-radius: 1.1rem;
+    }
+    .city-chip.active {
+      background: #0f172a;
+      color: #fff;
+      border-color: #0f172a;
+    }
+    .card-enter { animation: cardIn 260ms ease; }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 900px) { .map-frame { height: 500px; } }
+  </style>
+</head>
+<body class="text-slate-900">
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="../Public/logo.webp" alt="Aurora Sewer Cleaning Corp logo" class="h-16 w-auto object-contain">
+      </a>
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="px-4 py-2 rounded-full text-sm font-bold text-slate-700 border border-slate-300 hover:bg-slate-100 transition-colors">Back To Home</a>
+        <a href="tel:6308532780" class="px-5 py-2.5 rounded-full text-sm font-black bg-[#F59E0B] hover:bg-[#D97706] text-black transition-colors shadow-lg shadow-amber-500/30">Call Now: (630) 853-2780</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 py-14 md:py-16">
+    <section class="mb-10 text-center">
+      <p class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold tracking-[0.14em] uppercase bg-slate-900 text-[#FFF176]">Area We Service</p>
+      <h1 class="mt-5 text-4xl md:text-6xl font-black tracking-tight text-slate-900">Live Google Map Service Coverage</h1>
+      <p class="mt-5 max-w-3xl mx-auto text-slate-700 text-lg leading-relaxed">This is a real live Google map. Click a city below and the map will jump there while showing the booking details for that area.</p>
+    </section><section class="grid lg:grid-cols-[1.15fr_0.85fr] gap-8 items-start">
+      <div class="map-shell p-4 md:p-5">
+        <iframe
+          id="service-map"
+          class="map-frame"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Aurora,IL&z=10&output=embed"
+          title="Aurora Sewer Cleaning Service Area Map">
+        </iframe>
+      </div>
+
+      <aside id="city-card" class="bg-white rounded-3xl border border-slate-200 shadow-xl shadow-slate-900/10 p-7 md:p-8 card-enter">
+        <p class="text-xs font-bold tracking-[0.18em] uppercase text-[#0A5B8C] mb-3">Selected Service City</p>
+        <h2 id="city-name" class="text-3xl font-black text-slate-900">Aurora, IL</h2>
+        <p id="city-note" class="mt-3 text-slate-600 leading-relaxed">Main service hub and fastest response zone.</p>
+
+        <div class="mt-6 p-5 rounded-2xl bg-gradient-to-br from-[#FFF7BF] via-[#FFE45C] to-[#F2C200] border border-amber-300/70">
+          <p class="font-black text-slate-900 text-lg">Aurora Sewer Cleaning Corp</p>
+          <p class="text-slate-900 mt-2">3185 Longview Dr<br>Yorkville, Illinois 60560-4679</p>
+          <p class="mt-3 text-sm font-bold text-slate-800">Call Wendy to setup an appointment</p>
+          <a href="tel:6308532780" class="mt-3 inline-flex items-center justify-center px-5 py-3 rounded-xl bg-black text-white font-black hover:bg-slate-800 transition-colors">(630) 853-2780</a>
+          <a href="mailto:aurorasewercleaningcorp@gmail.com" class="mt-3 block text-sm font-semibold text-slate-900 underline underline-offset-2 break-all">aurorasewercleaningcorp@gmail.com</a>
+        </div>
+
+        <div class="mt-6">
+          <p class="text-xs uppercase tracking-[0.12em] text-slate-500 font-bold mb-3">Cities We Regularly Serve</p>
+          <div id="city-chips" class="flex flex-wrap gap-2"></div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const cities = [
+      { name: 'Aurora, IL', note: 'Main service hub and fastest response zone.' },
+      { name: 'Naperville, IL', note: 'Same-day drain cleaning and hydro jetting coverage.' },
+      { name: 'Yorkville, IL', note: 'Local dispatch support for residential and commercial jobs.' },
+      { name: 'Oswego, IL', note: 'Routine and emergency sewer service available.' },
+      { name: 'North Aurora, IL', note: 'Short travel window from Aurora for quick scheduling.' },
+      { name: 'Montgomery, IL', note: 'Drain rodding and hydro jetting appointments available.' },
+      { name: 'Plainfield, IL', note: 'Reliable crew coverage for homes and businesses.' },
+      { name: 'Sugar Grove, IL', note: 'Fast routing for clogs, inspections, and line tracing.' },
+      { name: 'Batavia, IL', note: 'Professional sewer and drain support with transparent pricing.' },
+      { name: 'Geneva, IL', note: 'Full-service drainage solutions and camera inspections.' },
+      { name: 'St. Charles, IL', note: 'Hydro jetting and root-removal service coverage.' },
+      { name: 'Bolingbrook, IL', note: 'Commercial and residential emergency calls supported.' },
+      { name: 'Warrenville, IL', note: 'Flexible appointment windows available throughout the week.' },
+      { name: 'Plano, IL', note: 'Dependable field coverage with honest recommendations.' },
+      { name: 'Lisle, IL', note: 'Quick response for sewer cleaning and camera diagnostics.' },
+      { name: 'Downers Grove, IL', note: 'High-priority service area with consistent crew availability.' }
+    ];
+
+    const mapFrame = document.getElementById('service-map');
+    const cityName = document.getElementById('city-name');
+    const cityNote = document.getElementById('city-note');
+    const cityCard = document.getElementById('city-card');
+    const cityChips = document.getElementById('city-chips');
+
+    function mapUrlFor(city) {
+      return `https://www.google.com/maps?q=${encodeURIComponent(city)}&z=11&output=embed`;
+    }
+
+    function setActiveCity(targetCity) {
+      cityName.textContent = targetCity.name;
+      cityNote.textContent = targetCity.note;
+      mapFrame.src = mapUrlFor(targetCity.name);
+
+      cityCard.classList.remove('card-enter');
+      void cityCard.offsetWidth;
+      cityCard.classList.add('card-enter');
+
+      document.querySelectorAll('.city-chip').forEach(chip => {
+        chip.classList.toggle('active', chip.dataset.city === targetCity.name);
+      });
+    }
+
+    cities.forEach(city => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'city-chip px-3 py-1.5 rounded-full border border-slate-300 bg-white text-slate-700 text-xs font-bold hover:bg-slate-100 transition-colors';
+      chip.dataset.city = city.name;
+      chip.textContent = city.name;
+      chip.addEventListener('click', () => setActiveCity(city));
+      cityChips.appendChild(chip);
+    });
+
+    setActiveCity(cities[0]);
+  </script>
+</body>
+</html>
+
+

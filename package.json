@@ -1,0 +1,25 @@
+{
+    "name":  "aurora-sewer-cleaning",
+    "version":  "1.0.0",
+    "description":  "",
+    "main":  "index.js",
+    "scripts":  {
+                    "test":  "echo \"Error: no test specified\" \u0026\u0026 exit 1",
+                    "build":  "npx @tailwindcss/cli -i input.css -o styles.css --minify",
+                    "start":  "node server.js",
+                    "dev":  "node server.js"
+                },
+    "keywords":  [
+
+                 ],
+    "author":  "",
+    "license":  "ISC",
+    "dependencies":  {
+                         "@tailwindcss/cli":  "^4.2.3",
+                         "tailwindcss":  "^4.2.3",
+                         "googleapis":  "^144.0.0",
+                         "nodemailer":  "^6.9.15",
+                         "express":  "^4.21.2",
+                         "cors":  "^2.8.5"
+                     }
+}
